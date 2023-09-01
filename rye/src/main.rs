@@ -1,3 +1,8 @@
+// libcurl crashes on Somona unless CoreServices is linked in
+// See https://github.com/mitsuhiko/rye/issues/428
+#[cfg_attr(target_os = "macos", link(name = "CoreServices", kind = "framework"))]
+extern "C" {}
+
 use std::process;
 use std::sync::atomic::{AtomicBool, Ordering};
 
